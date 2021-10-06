@@ -2,19 +2,20 @@ import * as S from "./styled";
 import { FaPlay, FaPause, FaDeezer,FaHeart, FaMinus } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 
-export default function ListItem(){
+export default function ListItem({props}){
 
     const currentLocation = useLocation();
     console.log(currentLocation)
+    
 
     return(
         <S.ItemWrapper>
             <S.InfoWrapper>
-                <S.ItemImage/>
+                <S.ItemImage src={props.artist.picture_small}/>
                 <S.ItemInfo>
-                    <h2>NOME DA MUSICA</h2>
-                    <p>ARTISTA</p>
-                    <span>22:03</span>
+                    <h2>{props.title}</h2>
+                    <p>{props.artist.name}</p>
+                    <span>{(props.duration/60).toFixed(2)} </span>
                 </S.ItemInfo>
             </S.InfoWrapper>
 

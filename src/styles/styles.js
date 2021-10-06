@@ -7,10 +7,10 @@ export const TitleList = styled.h1`
 export const ListWrapper = styled.main`
     
     padding: 20px 20px 0px 20px;
-    height: 100vh;
+    height: 60vh;
     width: 90%;
     background-color: #616161;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    overflow: hidden;
+    overflow-y: scroll;
 `
