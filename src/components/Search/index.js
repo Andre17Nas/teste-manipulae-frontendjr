@@ -1,46 +1,36 @@
 import * as S from './styled';
 import { FaSearch } from 'react-icons/fa';
-import {useState, useEffect} from 'react';
-import api from '../../services/api';
-import axios from 'axios';
+import {useState} from 'react';
+import { useDispatch } from 'react-redux';
 
 export default function Search(){
-    
-    let newData = []
-    const [currentSearch, setSearch] = useState(' ');
+    const dispatch = useDispatch();    
+    const [currentSearch, setSearch] = useState('');
 
-    useEffect(()=>{
+    async function fetchData(e){
 
-        function fetchData(){
+        e.preventDefault()
 
-            const album =  api.post(`/album`, {search: 'everglow'});
-            const artist = api.post(`/artist`, {search: 'everglow'});
-            const track =  api.post(`/track`, {search: 'everglow'}); 
+        if(currentSearch !== ''){
+ 
+            dispatch({
+                type: 'ADD_SEARCH',
+                currentSearch
+            })
+            
 
-            axios.all([album, artist, track]).then(axios.spread(function(...allData){
-                //console.log(album)
-                //console.log(artist)
-                //console.log(track)
-
-                newData = [...allData[0].data, ...allData[1].data , ...allData[2].data]
-
-                console.log(newData)
-
-            }))
-           
+        }else{
+            console.log('digite algo no campo de busca')
         }
-
-        fetchData();
-
-    }, [])
-
+       
+    }
 
     return(
         <S.SearchWrapper>
-            <S.SearchButton>
+            <S.SearchButton onClick={fetchData}>
                 <FaSearch size={30}/>
             </S.SearchButton>
-            <S.SearchInput placeholder="Album, Artista ou Música" value={currentSearch} onChange={e => setSearch(e.target.value)}/>
+            <S.SearchInput value={currentSearch} onChange={e => setSearch(e.target.value)} placeholder="Album, Artista ou Música"/>
         </S.SearchWrapper>
     )   
 }

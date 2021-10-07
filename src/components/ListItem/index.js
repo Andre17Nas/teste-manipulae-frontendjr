@@ -10,7 +10,7 @@ export default function ListItem({props}){
     return(
         <S.ItemWrapper>
             <S.InfoWrapper>
-                <S.ItemImage src={props.artist.picture_small} alt="miniatura da foto do artista"/>
+                <S.ItemImage src={props.artist.picture_small || props.album.cover_small} alt="miniatura da foto do artista"/>
                 <S.ItemInfo>
                     <h2>{props.title}</h2>
                     <p>{props.artist.name}</p>
