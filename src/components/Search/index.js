@@ -20,7 +20,12 @@ export default function Search(){
             
 
         }else{
-            console.log('digite algo no campo de busca')
+            setSearch('')
+
+            dispatch({
+                type: 'ADD_SEARCH',
+                currentSearch
+            })
         }
        
     }

@@ -1,6 +1,6 @@
 import produce from 'immer';
 
-function searchReducer(state = " ", action){
+function searchReducer(state = "", action){
     switch(action.type){
         case 'ADD_SEARCH':
             return action.currentSearch;

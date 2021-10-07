@@ -24,12 +24,19 @@ export default function List({props}){
            
             const response = await api.get('/');
             setPlaylistDeezer(response.data)             
-            console.log('busca', search)
+            //console.log('busca', search)
+
+            if(search !== ""){
+                setPlaylistDeezer([])
+                const response = await api.post('/page', {search: search, page: currentPage});
+                console.log('pesquisa:', response.data)
+                setPlaylistDeezer(response.data.data) 
+            }
         }
 
             getPlaylistFromRapidApi();
 
-    }, [])
+    }, [search]) //toda vez que tiver um novo valor na busca 
 
     
     
