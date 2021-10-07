@@ -5,13 +5,12 @@ import { useLocation } from 'react-router-dom';
 export default function ListItem({props}){
 
     const currentLocation = useLocation();
-    console.log(currentLocation)
     
 
     return(
         <S.ItemWrapper>
             <S.InfoWrapper>
-                <S.ItemImage src={props.artist.picture_small}/>
+                <S.ItemImage src={props.artist.picture_small} alt="miniatura da foto do artista"/>
                 <S.ItemInfo>
                     <h2>{props.title}</h2>
                     <p>{props.artist.name}</p>
