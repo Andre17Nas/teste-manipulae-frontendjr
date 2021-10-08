@@ -6,10 +6,8 @@ import { useState, useEffect } from 'react';
 import api from '../../services/api';
 import { useSelector } from "react-redux";
 
-import InfiniteScroll from 'react-infinite-scroll-component';
-import Search from "../../components/Search";
 
-export default function List({props}){
+export default function List(){
 
     const selector = useSelector(state => state.searchReducer);
     const search = selector

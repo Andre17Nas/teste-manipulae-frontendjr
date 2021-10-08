@@ -23,6 +23,7 @@ padding-left: 10px;
 /* - - - -  */
 
 export const PlayerWrapper = styled.div`
+    
     width: 500px;
 `
 export const ActionContainer = styled.div`
@@ -30,7 +31,7 @@ export const ActionContainer = styled.div`
     border-left: 2px solid #515151;
 `
 
-export const IconButton = styled.button`
+export const IconButton = styled.a`
     margin: 0px 10px;
     border: none;   
     background-color: transparent;

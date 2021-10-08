@@ -5,8 +5,8 @@ import { useLocation } from 'react-router-dom';
 export default function ListItem({props}){
 
     const currentLocation = useLocation();
-    
 
+    
     return(
         <S.ItemWrapper>
             <S.InfoWrapper>
@@ -19,9 +19,11 @@ export default function ListItem({props}){
             </S.InfoWrapper>
 
             <S.PlayerWrapper>
-                <S.IconButton><FaPlay color="#000" size={40}/></S.IconButton>
-                <S.IconButton><FaPause color="#000" size={40}/></S.IconButton>
-                <S.IconButton><FaDeezer color="#000" size={40}/></S.IconButton>
+                <S.IconButton>
+                <FaPlay color="#000" size={40} onClick={() => document.getElementById(props.id).play() }/><audio id={props.id} src={props.preview}/></S.IconButton>
+                <S.IconButton>
+                <FaPause color="#000" size={40} onClick={() => document.getElementById(props.id).pause()}/><audio id={props.id} src={props.preview}/></S.IconButton>
+                <S.IconButton href={props.link} target="_blank"><FaDeezer color="#000" size={40}/></S.IconButton>
             </S.PlayerWrapper>
             <S.ActionContainer>
                 {
