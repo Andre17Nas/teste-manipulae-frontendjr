@@ -1,11 +1,27 @@
 import * as S from "./styled";
 import { FaPlay, FaPause, FaDeezer,FaHeart, FaMinus } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
 
 export default function ListItem({props}){
 
     const currentLocation = useLocation();
+    const dispatch = useDispatch();
 
+    function addFav(track){
+        
+        dispatch({
+            type: 'ADD_FAV',
+            track
+        })
+    }
+
+    function removeFav(track){
+        dispatch({
+            type: 'REMOVE_FAV',
+            track
+        })
+    }
     
     return(
         <S.ItemWrapper>
@@ -20,17 +36,17 @@ export default function ListItem({props}){
 
             <S.PlayerWrapper>
                 <S.IconButton>
-                <FaPlay color="#000" size={40} onClick={() => document.getElementById(props.id).play() }/><audio id={props.id} src={props.preview}/></S.IconButton>
+                <FaPlay color="#FFF" size={30} onClick={() => document.getElementById(props.id).play() }/><audio id={props.id} src={props.preview}/></S.IconButton>
                 <S.IconButton>
-                <FaPause color="#000" size={40} onClick={() => document.getElementById(props.id).pause()}/><audio id={props.id} src={props.preview}/></S.IconButton>
-                <S.IconButton href={props.link} target="_blank"><FaDeezer color="#000" size={40}/></S.IconButton>
+                <FaPause color="#FFF" size={30} onClick={() => document.getElementById(props.id).pause()}/><audio id={props.id} src={props.preview}/></S.IconButton>
+                <S.IconButton href={props.link} target="_blank"><FaDeezer color="#FFF" size={30}/></S.IconButton>
             </S.PlayerWrapper>
             <S.ActionContainer>
                 {
                     (currentLocation.pathname === "/favoritas") ? 
-                    <S.IconButton><FaMinus color="#000" size={40}/></S.IconButton>
+                    <S.IconButton onClick={e=>removeFav(props)}><FaMinus color="#FFF" size={30}/></S.IconButton>
                     :
-                    <S.IconButton><FaHeart color="#000" size={40}/></S.IconButton>
+                    <S.IconButton onClick={e=>addFav(props)}><FaHeart color="#FFF" size={30}/></S.IconButton>
                 }
             </S.ActionContainer>
         </S.ItemWrapper>

@@ -62,6 +62,7 @@ export default function List(){
     return(
         <S.Section>
             <Header/>
+            
             <ListWrapper>
                 {
                      items.map((track)=>( <ListItem key={track.id} props={track}/>))

@@ -4,7 +4,7 @@ export const ItemWrapper = styled.div`
     display: flex;
     align-items: center;
     height: 80px;
-    border-bottom: 2px solid #515151;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 `
 
 export const InfoWrapper = styled.div`
@@ -14,7 +14,7 @@ export const InfoWrapper = styled.div`
 export const ItemImage = styled.img`
     width: 60px;
     height: 60px;
-    background-color: #fff;
+    background-color: #FFF;
 `
 export const ItemInfo = styled.div`
 padding-left: 10px;
@@ -28,7 +28,7 @@ export const PlayerWrapper = styled.div`
 `
 export const ActionContainer = styled.div`
     
-    border-left: 2px solid #515151;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
 `
 
 export const IconButton = styled.a`

@@ -3,12 +3,6 @@ import styled from 'styled-components';
 export const MainWrapper = styled.div`
 
     display: flex;
-    background-color: red;
-
-    .sidebar{
-        background-color: #1B1B1B;
-        width: 280px;
-        height:100vh;
-    }
-
+    background: linear-gradient(to Bottom, #000000, #150050, #3F0071, #610094);
+    
 `

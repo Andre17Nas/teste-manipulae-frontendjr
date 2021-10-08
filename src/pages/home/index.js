@@ -1,12 +1,11 @@
 import Routes from "../../routes"
-import { MainWrapper } from "./styled"
+import * as S from "./styled"
 
 
 export default function Home (){
     return(
-        <MainWrapper>
-            <div className='sidebar'/>
+        <S.MainWrapper>
             <Routes/>
-        </MainWrapper>
+        </S.MainWrapper>
     )
 }

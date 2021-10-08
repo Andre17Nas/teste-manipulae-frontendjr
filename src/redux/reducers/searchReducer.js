@@ -1,4 +1,4 @@
-import produce from 'immer';
+
 
 function searchReducer(state = "", action){
     switch(action.type){
