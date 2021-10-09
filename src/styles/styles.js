@@ -4,17 +4,22 @@ import {Link} from 'react-router-dom';
 export const TitleList = styled.h1`
     font-size: 24px;
     color: #FFF;
+    margin-bottom: 10px;
 `
 export const ListWrapper = styled.main`
-    
+    margin: 0;
     padding: 20px 20px 0px 20px;
-    height: 60vh;
+    height: 60%;
     width: 90%;
     background-color: rgba(255, 255, 255, 0.3);
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     overflow: hidden;
     overflow-y: scroll;
+
+    @media(max-width: 768px){
+        width: 100%;
+    }
 
 `
 export const SideWrapper = styled.div`
@@ -26,13 +31,19 @@ export const SideWrapper = styled.div`
         border-right: 1px solid #FFF;
         width: 280px;
         height:100vh;
+
+        @media(max-width: 768px){
+            display: none;
+        }
+
+
 `
 export const LinkContainer = styled.div`
         display: flex;
         flex-direction: column; 
         align-items: left;
         height: 200px;
-        width: 90%;
+        width: 100%;
 `
 export const Linker = styled(Link)`
     display: flex;

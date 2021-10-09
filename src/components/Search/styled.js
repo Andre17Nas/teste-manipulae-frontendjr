@@ -10,6 +10,10 @@ export const SearchWrapper = styled.form`
     border-radius: 40px; 
     margin: 0;
     padding: 20px 0px;
+
+    @media(max-width: 480px){
+        width: 300px;
+    }
     
 `
 export const SearchInput = styled.input`
@@ -23,6 +27,11 @@ export const SearchInput = styled.input`
     &:focus {
         outline: none;
     }
+
+    @media(max-width: 480px){
+        width: 80%;
+    }
+    
 `
 export const SearchButton = styled.button`
     margin: 0;

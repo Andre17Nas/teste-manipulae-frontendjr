@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { TitleList, ListWrapper } from "../../styles/styles";
 import * as S from './styled';
 import {useSelector} from 'react-redux';
-import ListItem from '../../components/ListItem'
+import ListItem from '../../components/ListItem';
 
 function Fav(){
 

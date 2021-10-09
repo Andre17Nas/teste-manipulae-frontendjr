@@ -9,15 +9,31 @@ export const ItemWrapper = styled.div`
 
 export const InfoWrapper = styled.div`
     display: flex;
-    width: 400px;
+    width: 100%;
+
+    @media(max-width: 480px){
+        width: 60px;
+        background-color: red;   
+    }
 `
 export const ItemImage = styled.img`
     width: 60px;
     height: 60px;
     background-color: #FFF;
+
+    @media(max-width: 480px){
+        
+    }
+
 `
 export const ItemInfo = styled.div`
 padding-left: 10px;
+
+@media(max-width: 480px){
+    display: none;
+}
+
+
 `
 
 /* - - - -  */
@@ -25,6 +41,10 @@ padding-left: 10px;
 export const PlayerWrapper = styled.div`
     
     width: 500px;
+
+    @media(max-width: 480px){
+        width: 90%;
+    }
 `
 export const ActionContainer = styled.div`
     

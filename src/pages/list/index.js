@@ -42,8 +42,8 @@ export default function List(){
             }            
         }
             getPlaylistFromRapidApi();   
-
-    }, [search]) //realiza a busca dos charts e assiste sempre que tiver um novo valor pesquisado pelo usuario 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [search]) 
 
 
     useEffect(()=>{
@@ -75,16 +75,14 @@ export default function List(){
                     ...old,
                     ...response.data.data
                 ])
-            }
-
-            
+            }    
         }
 
         fetchMore()
 
         observer.observe(document.getElementById("sentinel"));
         return () => observer.disconnect();
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage]) 
 
     useEffect(()=>{
