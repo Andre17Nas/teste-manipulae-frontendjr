@@ -5,72 +5,107 @@ import ListItem from "../../components/ListItem";
 import { useState, useEffect } from 'react';
 import api from '../../services/api';
 import { useSelector } from "react-redux";
+import {Sentinel, Loading} from '../../styles/styles';
 
 
 export default function List(){
-
+    
+    // Eu busco o valor adicionado no reducer
     const selector = useSelector(state => state.searchReducer);
     const search = selector
-    console.log('search', search)
 
     const [items, setPlaylistDeezer] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [showLoadding, setShowLoading] = useState(true);
 
     useEffect(()=>{
 
         async function getPlaylistFromRapidApi(){
-           
-            const response = await api.get('/');
-            setPlaylistDeezer(response.data)             
-            //console.log('busca', search)
+            setPlaylistDeezer(()=>[]) 
+            setShowLoading(true);
+            //carrega a lista das melhores musicas
+            const response =  await api.get('/');
+            setPlaylistDeezer(response.data);
+            setShowLoading(false);
 
-            if(search !== ""){
-                setPlaylistDeezer([])
-                const response = await api.post('/page', {search: search, page: currentPage});
-                console.log('pesquisa:', response.data)
-                setPlaylistDeezer(response.data.data) 
+            //recupera o valor de search feita pelo usuario
+            if(search !== ""){    
+                setPlaylistDeezer(()=>[]) 
+                
+                setShowLoading(true);
+                const response = await api.post('/page', {search, page: 1})
+                .finally(()=> document.getElementById('sentinel').style.display = "block")    
+                setShowLoading(true);
+                setPlaylistDeezer(response.data.data);
+                
+                setCurrentPage(2)
+            }            
+        }
+            getPlaylistFromRapidApi();   
+
+    }, [search]) //realiza a busca dos charts e assiste sempre que tiver um novo valor pesquisado pelo usuario 
+
+
+    useEffect(()=>{
+
+        const observer = new IntersectionObserver((entries)=>{
+
+            if(entries.some((entry) => entry.isIntersecting)){
+                setCurrentPage((currentPageInsideState) => currentPageInsideState + 1)   
+                console.log(currentPage)
+
+                document.getElementById('sentinel').style.display = "none"
+                
             }
+            
+        });      
+
+        
+
+        
+            async function fetchMore(){
+
+                if(currentPage > 1){
+                const response = await api.post('/page', {search, page: currentPage})
+                .finally(()=> document.getElementById('sentinel').style.display = "block")
+
+                setShowLoading(true);
+
+                setPlaylistDeezer((old)=>[
+                    ...old,
+                    ...response.data.data
+                ])
+            }
+
+            
         }
 
-            getPlaylistFromRapidApi();
+        fetchMore()
 
-    }, [search]) //toda vez que tiver um novo valor na busca 
+        observer.observe(document.getElementById("sentinel"));
+        return () => observer.disconnect();
 
-    
-    
-    /*
-    
+    }, [currentPage]) 
+
     useEffect(()=>{
-        const intersectionObserver = new IntersectionObserver((entries)=>{
-            if(entries.some((entry)=> entry.isIntersecting)){
-                setCurrentPage((currentPage)=> currentPage + 1);
-                console.log(currentPage)
-                
-                //faz a listagem da nova pagina
-                
+        if(showLoadding){
+            document.getElementById('loading').style.display = "block"
+        }else{
+            document.getElementById('loading').style.display = "none"
+        }
 
-            }
-        });
-
-        intersectionObserver.observe(document.getElementById('loadmore'))
-        return ()=> intersectionObserver.disconnect();
-        
-    }, [])
-
-    */
+    }, [showLoadding])
 
     return(
         <S.Section>
-            <Header/>
-            
+            <Header/>         
             <ListWrapper>
                 {
-                     items.map((track)=>( <ListItem key={track.id} props={track}/>))
-            
+                     items.map((track)=>( <ListItem key={track.id} props={track}/>)) 
                 }
-                <span id="loadmore"/>
+                <Sentinel id="sentinel"/>
+                <Loading id="loading">. . . </Loading>
             </ListWrapper>
-            
         </S.Section>
     )
 }

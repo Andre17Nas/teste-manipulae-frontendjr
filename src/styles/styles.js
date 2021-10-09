@@ -11,7 +11,6 @@ export const ListWrapper = styled.main`
     height: 60vh;
     width: 90%;
     background-color: rgba(255, 255, 255, 0.3);
-    
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     overflow: hidden;
@@ -43,4 +42,36 @@ export const Linker = styled(Link)`
     width: 90%;
     text-decoration: none;
     color: #FFF;
+`
+export const Sentinel = styled.span`
+    display: none;
+    width: 100%;
+    height: 2px;
+
+`
+
+export const Loading = styled.div`
+    display: none;
+    width: 100%;
+    text-align: center; 
+    font-size: 5rem;
+    color: #FFF;
+    align-items: self;
+    animation: load 1.5s infinite;
+
+    @keyframes load{
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    
 `

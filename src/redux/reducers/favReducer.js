@@ -1,4 +1,5 @@
 import produce from 'immer';
+import {toast} from 'react-toastify';
 
 function favReducer(state = [], action){
     switch(action.type){
@@ -7,9 +8,10 @@ function favReducer(state = [], action){
                 const trackIndex = draft.findIndex(track => track.id === action.track.id)
 
                 if(trackIndex >= 0){
-                    console.log('Essa musica ja existe')
+                    toast('Opa! você ja adicionou essa música em favoritos!');
                 }else{
                     draft.push({...action.track})
+                    toast('Música adicionada em favoritos!');
                 }
             })
         case 'REMOVE_FAV':
@@ -18,6 +20,7 @@ function favReducer(state = [], action){
 
                 if(trackIndex >= 0){
                     draft.splice(trackIndex, 1)
+                    toast('Musica deletada!');
                 }
             })
         default:
