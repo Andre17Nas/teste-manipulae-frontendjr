@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "http://localhost:9999",
+    baseURL: "https://muzik-api-deezer.herokuapp.com",
 });
 
 export default api;
